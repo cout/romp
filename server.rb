@@ -49,9 +49,19 @@ class Foo < Bar
     end
 end
 
-# server = ROMP::Server.new('tcpromp://localhost:4242', nil, true)
-# server = ROMP::Server.new('udpromp://localhost:4242', nil, true)
-server = ROMP::Server.new('unixromp:///tmp/foo', nil, true)
+if ARGV.size > 1 or ARGV[0] == "-h" or ARGV[0] == '-H' then
+  puts <<END
+Usage: #{$0} <url>
+Example urls:
+  tcpromp://localhost:4242
+  udpromp://localhost:4242
+  unixromp:///tmp/foo
+END
+end
+
+url = ARGV[0] || "tcpromp://localhost:4242"
+server = ROMP::Server.new(url, false)
+
 f = Foo.new(server)
 server.bind(f, "foo")
 server.thread.join

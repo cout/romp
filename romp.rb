@@ -108,6 +108,7 @@ public
                     session = Session.new(socket)
                     session.set_nonblock(true)
                     Thread.new(socket) do |socket|
+                        Thread.current.abort_on_exception = true
                         begin
                             # TODO: Send a sync message to the client so it
                             # knows we are ready to receive data.
@@ -505,6 +506,7 @@ private
                 when %r{^(udp)romp://(.*?):(.*)}
                     socket = UDPSocket.open
                     socket.connect($2, $3)
+                    socket #return
                 when %r{^(unix)romp://(.*)}
                     socket = UNIXSocket.open($2)
                 else

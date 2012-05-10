@@ -1,9 +1,18 @@
 # require 'profile'
 require 'romp'
 
-# client = ROMP::Client.new('tcppromp://localhost:4242', false)
-# client = ROMP::Client.new('udppromp://localhost:4242', false)
-client = ROMP::Client.new('unixromp:///tmp/foo', false)
+if ARGV.size > 1 or ARGV[0] == "-h" or ARGV[0] == '-H' then
+  puts <<END
+Usage: #{$0} <url>
+Example urls:
+  tcpromp://localhost:4242
+  udpromp://localhost:4242
+  unixromp:///tmp/foo
+END
+end
+
+url = ARGV[0] || "tcpromp://localhost:4242"
+client = ROMP::Client.new(url, false)
 obj = client.resolve("foo")
 
 N = 10

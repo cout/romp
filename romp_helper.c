@@ -90,16 +90,6 @@ static void init_globals() {
 // Forward declaration
 static VALUE msg_to_obj(VALUE message, VALUE session, VALUE mutex);
 
-// Create a Ruby string that won't be collected by the GC.  Be very careful
-// with this function!
-static void create_tmp_ruby_string(struct RString * str, char * buf, size_t len) {
-    str->basic.flags = T_STRING;
-    str->basic.klass = rb_cString;
-    str->ptr = buf;
-    str->len = len;
-    str->orig = 0; // ?
-}
-
 #define WRITE_HELPER \
     do { \
         write_count = write(fd, buf, count); \
@@ -363,7 +353,6 @@ static void get_message(ROMP_Session * session, ROMP_Message * message) {
 
     buf = ALLOCA_N(char, data_len);
     ruby_read_throw(session->read_fd, buf, data_len, session->nonblock);
-    // create_tmp_ruby_string(&message_string, buf, data_len);
     ruby_str = rb_str_new(buf, data_len);
 
     if(message->message_type != ROMP_NULL_MSG) {
