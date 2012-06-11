@@ -3,6 +3,7 @@ spec = Gem::Specification.new do |s|
   s.version = '0.2.0'
   s.summary = 'Ruby Object Message Proxy'
   s.homepage = 'http://github.com/cout/romp/'
+  s.extensions = 'ext/extconf.rb'
   s.author = 'Paul Brannan'
   s.email = 'curlypaul924@gmail.com'
   s.description = <<-END_DESCRIPTION
