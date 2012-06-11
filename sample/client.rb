@@ -1,5 +1,5 @@
 # require 'profile'
-require 'romp'
+require 'romp-rpc'
 
 if ARGV.size > 1 or ARGV[0] == "-h" or ARGV[0] == '-H' then
   puts <<END

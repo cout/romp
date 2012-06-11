@@ -1,4 +1,4 @@
-require 'romp'
+require 'romp-rpc'
 
 class Bar
     attr_reader :i
