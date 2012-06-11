@@ -13,7 +13,7 @@ transparently talk to an object that is sitting on a server.
   END_DESCRIPTION
 
   s.files = [
-    'lib/romp.rb',
+    'lib/romp-rpc.rb',
     'ext/romp_helper.c',
     'ext/extconf.rb',
     'sample/client.rb',
