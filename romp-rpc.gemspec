@@ -1,5 +1,5 @@
 spec = Gem::Specification.new do |s|
-  s.name = 'romp'
+  s.name = 'romp-rpc'
   s.version = '0.2.0'
   s.summary = 'Ruby Object Message Proxy'
   s.homepage = 'http://github.com/cout/romp/'
